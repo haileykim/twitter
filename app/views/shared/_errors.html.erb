@@ -1,9 +1,9 @@
-<% if @user.errors.any? %>
+<% if object.errors.any? %>
 <div class="alert alert-danger alert-dismissible" role="alert">
   <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-  <strong>The form contains <%= pluralize(@user.errors.count, 'error') %>!</strong> 
+  <strong>The form contains <%= pluralize(object.errors.count, 'error') %>!</strong> 
   <ul>
-    <% @user.errors.full_messages.each do |message|  %>
+    <% object.errors.full_messages.each do |message|  %>
      <li><%= message %>
     <% end  %>
   </ul>

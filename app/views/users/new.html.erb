@@ -1,11 +1,9 @@
 <%= provide(:title, 'Sign Up') %>
 
-<%= render 'shared/errors' %>
+<%= render 'shared/errors', object: @user %>
 <div class="form-signin">
     <h2 class="form-signin-heading">Create Account</h2>
     <%= form_for(@user) do |f| %>
-
-    
 
     <%= f.text_field :name, placeholder: 'Name', class: 'form-control' %>
     <%= f.text_field :email, placeholder: 'Email address', class: 'form-control' %>
