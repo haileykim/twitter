@@ -1,0 +1,15 @@
+<div class="media">
+	<%= link_to gravatar_for(feed_item.user, size:60), feed_item.user, class: 'pull-left' %>
+  <div class="media-body">
+    <p><%= feed_item.content %>
+    	<% if current_user?(feed_item.user) %>
+      <span> | <%= link_to "delete", feed_item, method: :delete, data: { confirm: "Are you sure?"} %></span>
+      <% end  %>
+    <p>
+
+     <p class="blog-post-meta">
+	Posted <%= time_ago_in_words(feed_item.created_at) %> ago by <%= feed_item.user.name %>
+</p>
+  </div>
+</div>
+<hr>

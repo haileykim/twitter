@@ -18,7 +18,7 @@
   	<tr>
        <td><%= user.id  %></td>
        <td><%= gravatar_for user, size: 50  %></td>
-       <td><%= user.name %></td>
+       <td><%= link_to user.name, user %></td>
        <td><%= user.email %></td>
        <td><%= link_to 'Edit', edit_user_path(user) %> | 
 

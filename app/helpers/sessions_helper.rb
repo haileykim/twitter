@@ -24,6 +24,14 @@ module SessionsHelper
     user == current_user
   end 
 
+  def require_signin
+    unless signed_in?
+      store_location
+      flash[:warning] = 'Please sign in' 
+      redirect_to signin_path
+    end
+  end
+
   def current_user_admin?
     signed_in? && current_user.admin?
   end

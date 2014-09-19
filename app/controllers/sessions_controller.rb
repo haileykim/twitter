@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
 
   def destroy
   	sign_out
-  	flash[:success] = "Your account has been deleted"
+  	flash[:success] = "You're signed out!"
   	redirect_to root_url
   end
   

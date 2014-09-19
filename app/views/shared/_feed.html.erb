@@ -1,0 +1,11 @@
+<div class="col-sm-8 blog-main">
+		<div class="blog-post">
+			<h4><%= pluralize(@feed_items.count, 'tweet') %></h4>
+			<hr>
+			<% if @feed_items.any? %>
+				<%= render partial: 'shared/feed_item', collection: @feed_items %>
+				<%= will_paginate @feed_items %>
+			<% end  %>
+			 
+    </div>
+</div>

@@ -10,13 +10,22 @@ class UsersController < ApplicationController
 
   def show
   	@user = User.find(params[:id])
+    @microposts = @user.microposts.paginate(page: params[:page])
+    @micropost = current_user.microposts.build if signed_in?
   end
 
   def new
-  	@user = User.new
+    if signed_in?
+      redirect_to root_path
+    else
+      @user = User.new
+    end
   end
 
   def create
+    if signed_in?
+      redirect_to root_path
+    else
   	@user = User.new(user_params)
   	if @user.save
   	  sign_in @user
@@ -25,6 +34,7 @@ class UsersController < ApplicationController
   	else
   	  render 'new'
   	end
+  end
   end
 
   def edit
@@ -42,23 +52,20 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
+    if @user == current_user
+      flash[:warning] = 'Admin users cannot be deleted'
+      redirect_to users_path
+    else
     @user.destroy
     flash[:success] = "#{@user.name} has been deleted"
     redirect_to users_path
+  end
   end
 
   private
  
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
-  end
-
-  def require_signin
-    unless signed_in?
-      store_location
-      flash[:warning] = 'Please sign in' 
-      redirect_to signin_path
-    end
   end
 
   def require_correct_user

@@ -1,0 +1,7 @@
+<%= form_for(@micropost) do |f| %>
+  <%= render 'shared/errors', object: f.object %>
+  <%= f.text_area :content, placeholder: 'Compose new Tweet...', rows: 4 , class: 'form-control' %>
+  <%= f.submit 'Tweet!', class: 'btn btn-primary btn-le btn-block pull-right tweet-btn' %>
+
+<% end  %>
+  <div style="clear:both"></div>
