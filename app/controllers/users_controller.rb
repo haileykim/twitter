@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
 
-  before_action :require_signin, only: [:edit, :update, :destroy]
+  before_action :require_signin, only: [:edit, :update, :destroy, :following, :followers]
   before_action :require_correct_user, only: [:edit, :update]
-  before_action :require_admin, only: [:index, :destroy]
+  before_action :require_admin, only: [:destroy]
 
   def index
     @users = User.paginate(page: params[:page])
@@ -59,7 +59,21 @@ class UsersController < ApplicationController
     @user.destroy
     flash[:success] = "#{@user.name} has been deleted"
     redirect_to users_path
+    end
   end
+
+  def following
+    @title = "Following"
+    @user = User.find(params[:id])
+    @users = @user.followed_users.paginate(page: params[:page])
+    render 'show_follow'
+  end
+
+  def followers
+    @title = "Followers"
+    @user = User.find(params[:id])
+    @users = @user.followers.paginate(page: params[:page])
+    render 'show_follow'
   end
 
   private

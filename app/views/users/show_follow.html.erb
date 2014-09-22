@@ -1,0 +1,33 @@
+<% provide(:title, @title)  %>
+
+<div class="row">
+	<div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+		<br>
+  			<%= gravatar_for(@user, size: 210) %> 
+			<h3 style="text-align:center"> <%= @user.name %></h3>
+		<%= render 'shared/stats' %>
+		
+	</div>
+
+	<div class="col-sm-8 blog-main">
+		<div class="blog-post">
+			<h4><%= @title %></h4>
+			<hr>
+			<% if @users.any? %>
+				<table class="table table-striped">
+ 				
+  				<tbody>
+  					<% @users.each do |user| %>
+  					<tr>
+       					<td><%= gravatar_for user, size: 50  %></td>
+       					<td><%= link_to user.name, user %></td>
+				    </tr>
+    				<% end %>
+  				</tbody>
+				</table>
+				<%= will_paginate @users %>
+			<% end %>
+			 
+   		 </div>
+
+	</div>

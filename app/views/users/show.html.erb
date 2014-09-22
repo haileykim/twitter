@@ -5,8 +5,10 @@
 		<br>
   			<%= gravatar_for(@user, size: 210) %> 
 			<h3 style="text-align:center"> <%= @user.name %></h3>
-		 
+		<%= render 'shared/stats' %>
+		<%= render 'follow_form' if signed_in? %> 
 	</div>
+
 	<div class="col-sm-8 blog-main">
 		<div class="blog-post">
 			<h4>Microposts (<%= @user.microposts.count %>)</h4>
@@ -18,4 +20,5 @@
 			 
     </div>
 
+</div>
 </div>

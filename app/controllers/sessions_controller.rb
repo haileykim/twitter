@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
   	if user && user.authenticate(params[:password])
   		sign_in(user)
   		flash[:success] = "Welcome back, #{user.name}!"
-  		redirect_back_or user
+  		redirect_back_or root_path
   	else
   	  flash.now[:danger] = 'Invalid email of password'
   	  render 'new'
